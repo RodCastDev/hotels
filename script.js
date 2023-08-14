@@ -1,3 +1,37 @@
+// Consumo de la Api
+
+const getApi = async () => {
+  const response = await fetch(
+    "https://6256097e8646add390e01d99.mockapi.io/hotels/reservation/hotels"
+  );
+  const data = await response.json();
+  console.log(data);
+
+  data.forEach(element => {
+    const cardHotel = document.createElement("article");
+    cardHotel.className = "HotelCard";
+    cardHotel.classList.add ("HotelCard")
+
+    const imgCard = document.createElement("img");
+    imgCard.className = "HotelCard__Img";
+    imgCard.setAttribute("src", element.photo);
+    imgCard.setAttribute("alt", "photoHotel");
+
+    const cardTitle = document.createElement("h2");
+    cardTitle.className = "HotelCard__Title";
+    cardTitle.textContent = element.name;
+
+    cardHotel.appendChild(imgCard);
+    cardHotel.appendChild(cardTitle);
+    sectionCards.appendChild(cardHotel);
+    
+  });
+};
+
+getApi();
+
+// Manipulacion del DOM
+
 const title = document.createElement("h1");
 title.className = "Title";
 title.textContent = "Book it!";
@@ -17,9 +51,8 @@ foundMessage__Title.textContent = "We have found for you...";
 
 const foundMessage__Content = document.createElement("p");
 foundMessage__Content.className = "FoundMessage__Content";
-foundMessage__Content.textContent = "All sizes hotels of all category prices in all contries.";
-
-
+foundMessage__Content.textContent =
+  "All sizes hotels of all category prices in all contries.";
 
 const selectCountries = document.createElement("select");
 selectCountries.className = "Filter__Countries Filter-Icon";
@@ -46,13 +79,11 @@ const country4 = document.createElement("option");
 country4.value = "country3";
 country4.textContent = "Uruguay";
 
-
 selectCountries.appendChild(all);
 selectCountries.appendChild(country1);
 selectCountries.appendChild(country2);
 selectCountries.appendChild(country3);
 selectCountries.appendChild(country4);
-
 
 const inputDateFrom = document.createElement("input");
 inputDateFrom.className = "Filter__DateFrom Filter-Icon";
@@ -61,14 +92,11 @@ inputDateFrom.id = "date-from";
 inputDateFrom.min = "2023-08-12";
 inputDateFrom.type = "date";
 
-
 const inputDateTo = document.createElement("input");
 inputDateTo.className = "Filter__DateTo Filter-Icon";
 inputDateTo.name = "date-to";
 inputDateTo.id = "date-to";
 inputDateTo.type = "date";
-
-
 
 const selectPrices = document.createElement("select");
 selectPrices.className = "Filter__Prices Filter-Icon";
@@ -134,13 +162,11 @@ buttonClear.textContent = "Clear";
 const header = document.querySelector(".Header");
 header.appendChild(title);
 header.appendChild(filter__Container);
-header.appendChild (foundMessage__Container);
-
+header.appendChild(foundMessage__Container);
 
 filter__Container.appendChild(filter__Grid);
 foundMessage__Container.appendChild(foundMessage__Title);
 foundMessage__Container.appendChild(foundMessage__Content);
-
 
 const filterGrid = document.querySelector(".Filter__Grid");
 filterGrid.appendChild(selectCountries);
@@ -150,27 +176,16 @@ filterGrid.appendChild(selectPrices);
 filterGrid.appendChild(selectSizes);
 filterGrid.appendChild(buttonClear);
 
+const info__Text = document.createElement("p")
+info__Text.className = "Info__Text"
+info__Text.textContent = "Hover over the cards to discover amazing information! ";
 
-const sectionCards= document.createElement ("section");
-sectionCards.className="HotelsContainer";
-
-const cardHotel= document.createElement("article");
-cardHotel.className="HotelCard";
-
-
-const imgCard= document.createElement("img");
-imgCard.className="HotelCard__Img";
-imgCard.setAttribute("src", "");
-imgCard.setAttribute("alt", "photoHotel");
-
-const cardTitle =document.createElement("h2");
-cardTitle.className="HotelCard__Title";
-cardTitle.textContent= "";
+const sectionCards = document.createElement("section");
+sectionCards.className = "HotelsContainer";
 
 const main = document.querySelector("main");
 main.appendChild(sectionCards);
 
-sectionCards.appendChild(cardHotel);
 
-cardHotel.appendChild(imgCard);
+
 
